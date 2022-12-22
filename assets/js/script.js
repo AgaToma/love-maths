@@ -16,16 +16,26 @@ document.addEventListener("DOMContentLoaded", function(){
         })
 
     }
+    //thanks to passing event object to the function, we can check it's key property and call the function if the key pressed was Enter
+    document.getElementById("answer-box").addEventListener("keydown", function(event) {
+        if (event.key === "Enter") {
+            checkAnswer();
+        }
+    });
 
     runGame("addition");
 
-})
+});
 
 /**
  * The main game "loop", called when the script is first loaded
  * and after the user's answer has been processed
  */
 function runGame(gameType) {
+    //empties the answer box so user doesn't have to delete the prev answers
+    document.getElementById("answer-box").value = "";
+    //this makes cursor go to the answer box before each answer
+    document.getElementById("answer-box").focus();
     //creates 2 random numbers between 1 and 25
     let num1 = Math.floor(Math.random() * 25) + 1;
     let num2 = Math.floor(Math.random() * 25) + 1;
